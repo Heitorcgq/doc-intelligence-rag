@@ -1,33 +1,29 @@
 # 🤖 Doc Intelligence RAG (M.O.T.H.E.R. Interface)
 
-Este repositório contém o código de uma IA especializada em análise de documentos técnicos utilizando a arquitetura **RAG (Retrieval-Augmented Generation)**. O projeto, apelidado de **M.O.T.H.E.R.**, permite que usuários subam manuais em PDF e consultem informações complexas através de linguagem natural com alta precisão e persistência de dados.
+Este projeto consiste em um sistema avançado de **RAG (Retrieval-Augmented Generation)** projetado para transformar documentos PDF em bases de conhecimento consultáveis. Apelidado de **M.O.T.H.E.R.**, o sistema utiliza inteligência artificial para responder perguntas técnicas com precisão, mantendo a imersão em uma interface temática de base lunar.
 
 
 
-## 🚀 Funcionalidades Principais
+## 🛠️ Arquitetura do Sistema
 
-* **Persistência de Memória**: Utiliza um sistema de arquivos de configuração (`config_memoria.txt`) para garantir que o último manual carregado seja lembrado mesmo após o servidor ser reiniciado.
-* **Isolamento Dinâmico**: Cada novo documento processado cria uma "célula de memória" única (subpastas com timestamp), evitando a sobreposição ou mistura de informações de manuais diferentes.
-* **Interface Inteligente**: Desenvolvido em Streamlit, oferece um modo de edição completo para mudar instruções ou limpar a memória física do banco de dados.
-* **Auditabilidade (Debug Mode)**: Inclui um relatório de inteligência que exibe exatamente quais trechos do PDF foram recuperados para gerar a resposta da IA.
-* **Geração de Documentos**: Integração com a biblioteca `fpdf2` para criação de novos relatórios ou documentos a partir das interações.
+O projeto foi estruturado para superar as limitações de bloqueio de arquivos em sistemas Windows, utilizando um método de **Compartimentação Dinâmica de Memória**:
 
-## 🛠️ Tecnologias Utilizadas
+* **Persistência de Longo Prazo**: O arquivo `config_memoria.txt` armazena o caminho da última célula de memória ativa, garantindo que o manual não seja esquecido após reiniciar o sistema.
+* **Isolamento de Dados**: Cada novo manual processado cria uma subpasta única dentro de `./memorias/`, evitando a mistura de contextos entre diferentes documentos.
+* **Performance**: Utiliza `@st.cache_resource` para carregamento instantâneo dos modelos de Embedding após a primeira inicialização.
 
-* **Python 3.12**
-* **Streamlit**: Interface do usuário e frontend.
-* **LangChain**: Orquestração do pipeline RAG.
-* **ChromaDB**: Banco de dados vetorial para armazenamento persistente.
-* **Groq API (Llama 3.1)**: Motor de inferência de alto desempenho.
-* **HuggingFace Embeddings**: Transformação de texto em vetores semânticos.
+## 📂 Estrutura de Arquivos
 
-## 📂 Estrutura do Projeto
+Conforme visualizado no ambiente de desenvolvimento:
 
 ```text
 .
-├── app_streamlit.py       # Código principal da aplicação
-├── requirements.txt       # Dependências do projeto
-├── .env                  # Variáveis de ambiente (API Keys)
-├── .gitignore            # Arquivos ignorados pelo Git
-├── memorias/             # Pasta onde os bancos de dados são salvos
-└── config_memoria.txt    # Arquivo que persiste o caminho do último manual
+├── app_streamlit.py       # Interface principal e lógica do chatbot
+├── requirements.txt       # Dependências do projeto (fpdf2, langchain, etc.)
+├── .env                  # Chaves de API (não incluídas no repositório)
+├── .gitignore            # Proteção contra upload de dados sensíveis e cache
+├── config_memoria.txt    # Persistência do caminho do banco ativo
+├── memorias/             # Diretório de armazenamento dos bancos vetoriais
+│   └── banco_177144...   # Células de memória isoladas por timestamp
+├── manuais/              # PDFs originais para processamento
+└── gerador_pdf/          # Scripts auxiliares para criação de documentos
