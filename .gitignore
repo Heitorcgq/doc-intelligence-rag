@@ -6,6 +6,7 @@ banco_vetorial/
 config_memoria.txt
 ultima_memoria.txt
 manuais/
+configs/
 
 __pycache__/
 *.pyc
