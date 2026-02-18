@@ -1,0 +1,12 @@
+# Chaves de API
+.env
+
+memorias/
+banco_vetorial/
+config_memoria.txt
+ultima_memoria.txt
+manuais/
+
+__pycache__/
+*.pyc
+.streamlit/
