@@ -27,3 +27,6 @@ Conforme visualizado no ambiente de desenvolvimento:
 │   └── banco_177144...   # Células de memória isoladas por timestamp
 ├── manuais/              # PDFs originais para processamento
 └── gerador_pdf/          # Scripts auxiliares para criação de documentos
+```
+
+Desenvolvido por Heitor - Doc Intelligence RAG
